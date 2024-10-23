@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://dr8alr25ralsc"]
+
+[ext_resource type="Script" path="res://Player/bullet.gd" id="1_0jtrj"]
+[ext_resource type="Texture2D" uid="uid://c5lxlsa0v65yi" path="res://Player/Shot-Sheet.png" id="1_loj6a"]
+[ext_resource type="Script" path="res://Enemy/hurt_box.gd" id="3_s3ire"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n7h4"]
+atlas = ExtResource("1_loj6a")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhhrj"]
+atlas = ExtResource("1_loj6a")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fl3iw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n7h4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhhrj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ggp6r"]
+radius = 7.07107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_paaa3"]
+radius = 7.0
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_0jtrj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fl3iw")
+autoplay = "default"
+frame = 1
+frame_progress = 0.990082
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ggp6r")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_s3ire")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_paaa3")
