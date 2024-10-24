@@ -1,6 +1,7 @@
 extends Area2D
 
 var direction
+var vertical
 @onready var hurt_box: HurtBox = $HurtBox
 
 func _ready() -> void:
@@ -10,6 +11,12 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	position.x += 400 * delta * direction
+	if vertical == 1:
+		position.y += 200 * delta
+	elif vertical == -1:
+		position.y -= 200 * delta
+	else:
+		position.y += 0
 	
 func _on_area_entered(area):
 	print("HIT")

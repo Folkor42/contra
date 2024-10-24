@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bksj301cpndn6"
-path="res://.godot/imported/Full-Sheet-Green.png-4612200b59fcadacf752395d03c0ab21.ctex"
+uid="uid://brsrk7lyh8cel"
+path="res://.godot/imported/Harbor_Assets.png-49ca6608f006d702de1de557493963a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/Full-Sheet-Green.png"
-dest_files=["res://.godot/imported/Full-Sheet-Green.png-4612200b59fcadacf752395d03c0ab21.ctex"]
+source_file="res://Levels/Harbor_Assets.png"
+dest_files=["res://.godot/imported/Harbor_Assets.png-49ca6608f006d702de1de557493963a6.ctex"]
 
 [params]
 

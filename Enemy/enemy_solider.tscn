@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b6mkajyb5sq5c"]
 
-[ext_resource type="Texture2D" uid="uid://bksj301cpndn6" path="res://Enemy/Full-Sheet-Green.png" id="1_eqg2t"]
+[ext_resource type="Texture2D" uid="uid://bksj301cpndn6" path="res://Full-Sheet-Green.png" id="1_eqg2t"]
 [ext_resource type="Script" path="res://Enemy/hit_box.gd" id="2_tfm6q"]
 
 [sub_resource type="GDScript" id="GDScript_yfcpr"]

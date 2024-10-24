@@ -185,6 +185,7 @@ var shootRelease
 var shooting : bool = false
 @onready var shoot_delay: Timer = $ShootDelay
 @onready var bullet_origin: Marker2D = $BulletOrigin
+@onready var shoot_audio: AudioStreamPlayer2D = $ShootAudio
 
 func _ready():
 	wasMovingR = true
@@ -269,14 +270,31 @@ func _process(_delta):
 	if rightHold and !latched:
 		anim.scale.x = animScaleLock.x
 		bullet_origin.position.x = 27
+		if upHold:
+			bullet_origin.position.y = -10
+		elif downHold:
+			bullet_origin.position.y = 10
+		else:
+			bullet_origin.position.y = 0
 	if leftHold and !latched:
 		anim.scale.x = animScaleLock.x * -1
 		bullet_origin.position.x = -27
+		if upHold:
+			bullet_origin.position.y = -10
+		elif downHold:
+			bullet_origin.position.y = 10
+		else:
+			bullet_origin.position.y = 0
 	#run
 	if run and idle and !dashing and !crouching:
 		if abs(velocity.x) > 0.1 and is_on_floor() and !is_on_wall():
 			anim.speed_scale = abs(velocity.x / 150)
-			anim.play("run")
+			if upHold:
+				anim.play("run_up")
+			elif downHold:
+				anim.play("run_down")
+			else:
+				anim.play("run")
 		elif abs(velocity.x) < 0.1 and is_on_floor():
 			anim.speed_scale = 1
 			anim.play("idle")
@@ -286,7 +304,12 @@ func _process(_delta):
 			if abs(velocity.x) < (maxSpeedLock):
 				anim.play("walk")
 			else:
-				anim.play("run")
+				if upHold:
+					anim.play("run_up")
+				elif downHold:
+					anim.play("run_down")
+				else:
+					anim.play("run")
 		elif abs(velocity.x) < 0.1 and is_on_floor():
 			anim.speed_scale = 1
 			anim.play("idle")
@@ -609,8 +632,16 @@ func _physics_process(delta):
 	
 func start_shooting()->void:
 	print("SHOOT!")
+	shoot_audio.play()
 	var pos = $BulletOrigin.global_position
-	shoot_gun.emit (pos,anim.scale.x)
+	var vertical : int
+	if upHold:
+		vertical = -1
+	elif downHold:
+		vertical = 1
+	else:
+		vertical = 0
+	shoot_gun.emit (pos,anim.scale.x,vertical)
 	shoot_delay.start()
 	pass
 	
