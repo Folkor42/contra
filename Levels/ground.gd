@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@onready var player: PlatformerController2D = $"../Player"
+@onready var player: PlatformerController2D = $"../../Player"
 
 func disable()->void:
 	print ("Disabling....")

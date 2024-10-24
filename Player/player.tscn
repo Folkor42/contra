@@ -1,8 +1,9 @@
-[gd_scene load_steps=46 format=3 uid="uid://cln6hy70qw1v7"]
+[gd_scene load_steps=48 format=3 uid="uid://cln6hy70qw1v7"]
 
 [ext_resource type="Script" path="res://Player/UltimatePlatformerController.gd" id="1_p1yve"]
 [ext_resource type="Texture2D" uid="uid://1164jo1h4n0h" path="res://Player/Full-Sheet.png" id="2_hclxc"]
 [ext_resource type="AudioStream" uid="uid://clo1vlau3lu07" path="res://Player/Shoot_1.wav" id="3_biyme"]
+[ext_resource type="Script" path="res://Enemy/hit_box.gd" id="4_1oay5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j8bo5"]
 atlas = ExtResource("2_hclxc")
@@ -325,6 +326,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iui5u"]
 size = Vector2(16, 38)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1nly"]
+size = Vector2(12, 27)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
 collision_layer = 2
 script = ExtResource("1_p1yve")
@@ -336,7 +340,7 @@ idle = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lfu55")
-animation = &"run_up"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 9)
@@ -355,3 +359,10 @@ max_polyphony = 4
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 36)
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("4_1oay5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(6, 5.5)
+shape = SubResource("RectangleShape2D_w1nly")

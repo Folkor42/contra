@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6mkajyb5sq5c"]
+[gd_scene load_steps=8 format=3 uid="uid://b6mkajyb5sq5c"]
 
 [ext_resource type="Texture2D" uid="uid://bksj301cpndn6" path="res://Full-Sheet-Green.png" id="1_eqg2t"]
 [ext_resource type="Script" path="res://Enemy/hit_box.gd" id="2_tfm6q"]
+[ext_resource type="Script" path="res://Enemy/hurt_box.gd" id="3_nluau"]
 
 [sub_resource type="GDScript" id="GDScript_yfcpr"]
 script/source = "extends CharacterBody2D
@@ -33,6 +34,9 @@ size = Vector2(20, 41)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7g4q"]
 size = Vector2(20, 41)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fbbd"]
+size = Vector2(13, 26)
+
 [node name="Enemy Solider" type="CharacterBody2D"]
 position = Vector2(-1, 0)
 collision_layer = 4
@@ -55,3 +59,10 @@ script = ExtResource("2_tfm6q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_j7g4q")
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_nluau")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0.5, 2)
+shape = SubResource("RectangleShape2D_1fbbd")
