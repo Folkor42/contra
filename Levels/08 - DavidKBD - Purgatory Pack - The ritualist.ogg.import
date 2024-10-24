@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cng5cx4xr07ya"
+path="res://.godot/imported/08 - DavidKBD - Purgatory Pack - The ritualist.ogg-2f05abf6b6688bb5b5e46929fc068409.oggvorbisstr"
+
+[deps]
+
+source_file="res://Levels/08 - DavidKBD - Purgatory Pack - The ritualist.ogg"
+dest_files=["res://.godot/imported/08 - DavidKBD - Purgatory Pack - The ritualist.ogg-2f05abf6b6688bb5b5e46929fc068409.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

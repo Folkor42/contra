@@ -186,6 +186,9 @@ var shooting : bool = false
 @onready var shoot_delay: Timer = $ShootDelay
 @onready var bullet_origin: Marker2D = $BulletOrigin
 @onready var shoot_audio: AudioStreamPlayer2D = $ShootAudio
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
+
+
 
 func _ready():
 	wasMovingR = true
@@ -269,22 +272,27 @@ func _process(_delta):
 
 	if rightHold and !latched:
 		anim.scale.x = animScaleLock.x
-		bullet_origin.position.x = 27
+		
 		if upHold:
-			bullet_origin.position.y = -10
+			bullet_origin.position.y = -12
+			bullet_origin.position.x = 23
 		elif downHold:
-			bullet_origin.position.y = 10
+			bullet_origin.position.y = 12
+			bullet_origin.position.x = 23
 		else:
 			bullet_origin.position.y = 0
+			bullet_origin.position.x = 25
 	if leftHold and !latched:
 		anim.scale.x = animScaleLock.x * -1
-		bullet_origin.position.x = -27
 		if upHold:
 			bullet_origin.position.y = -10
+			bullet_origin.position.x = -23
 		elif downHold:
 			bullet_origin.position.y = 10
+			bullet_origin.position.x = -23
 		else:
 			bullet_origin.position.y = 0
+			bullet_origin.position.x = -25
 	#run
 	if run and idle and !dashing and !crouching:
 		if abs(velocity.x) > 0.1 and is_on_floor() and !is_on_wall():
@@ -377,6 +385,13 @@ func _physics_process(delta):
 	shoot = Input.is_action_just_pressed("shoot")
 	shootRelease = Input.is_action_just_released("shoot")
 
+	
+	#INFO Jump Down
+	if ray_cast_2d.is_colliding():
+		var collision = ray_cast_2d.get_collider()
+		if collision.has_method("disable") and Input.is_action_pressed("down") and Input.is_action_just_pressed("jump"):
+			jumpTap=false
+			collision.disable()
 	
 	#INFO Left and Right Movement
 	

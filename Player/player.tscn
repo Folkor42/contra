@@ -194,7 +194,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_tasm4")
 }],
 "loop": true,
-"name": &"crouch",
+"name": &"crouch_idle",
 "speed": 10.0
 }, {
 "frames": [{
@@ -326,6 +326,7 @@ animations = [{
 size = Vector2(16, 38)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
+collision_layer = 2
 script = ExtResource("1_p1yve")
 PlayerSprite = NodePath("AnimatedSprite2D")
 PlayerCollider = NodePath("CollisionShape2D")
@@ -335,14 +336,14 @@ idle = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lfu55")
-animation = &"Death"
+animation = &"run_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 9)
 shape = SubResource("RectangleShape2D_iui5u")
 
 [node name="BulletOrigin" type="Marker2D" parent="."]
-position = Vector2(27, 0)
+position = Vector2(25, 0)
 
 [node name="ShootDelay" type="Timer" parent="."]
 wait_time = 0.2
@@ -351,3 +352,6 @@ one_shot = true
 [node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_biyme")
 max_polyphony = 4
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 36)
